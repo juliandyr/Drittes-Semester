@@ -1,37 +1,34 @@
 #include "learningsession.h"
 
-
-LearningSession::LearningSession(Deck &deck) : deck(deck)
+LearningSession::LearningSession(Deck& deck, LearningStrategy* strategy)
+    : deck(deck), strategy(strategy)
 {
-    currentIndex = 0; //muss der bei 0 anfangen?
+    currentIndex = 0;
     currentCard = nullptr;
     score = 0;
 }
 
-Card *LearningSession::nextCard()
+Card* LearningSession::nextCard()
 {
     if(hasNextCard()){
-    Card* nextCard = deck.getCard(currentIndex+1);
+        Card* next = strategy->determineNextCardinDeck(deck, currentIndex);
         currentIndex++;
-        return nextCard;
+        return next;
     }
+    return nullptr;
 }
 
 bool LearningSession::hasNextCard()
 {
-    //deck.getCards() gibt mir vektor;
-    if(currentIndex+1 >= deck.getSize()){
+    if(currentIndex >= deck.getSize()){
         return false;
     }
-    else{
-        return true;
-    }
-
+    return true;
 }
 
 bool LearningSession::checkAnswer(std::string input)
 {
-    if(deck.getCard(currentIndex)->checkAnswer(input)){
+    if(deck.getCard(currentIndex-1)->checkAnswer(input)){
         score++;
         return true;
     }
@@ -41,7 +38,7 @@ bool LearningSession::checkAnswer(std::string input)
     }
 }
 
-Deck &LearningSession::getDeck() const
+Deck& LearningSession::getDeck() const
 {
     return deck;
 }

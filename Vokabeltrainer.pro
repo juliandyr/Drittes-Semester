@@ -10,13 +10,18 @@ SOURCES += \
         deck.cpp \
         deckexception.cpp \
         deckmanager.cpp \
+        fileexception.cpp \
         fillincard.cpp \
+        invalidformatexception.cpp \
         learningsession.cpp \
+        learningstrategy.cpp \
         main.cpp \
+        sequentialstrategy.cpp \
         singlechoicecard.cpp \
         terminalcardview.cpp \
         terminalcontroller.cpp \
-        textcard.cpp
+        textcard.cpp \
+        weightedstrategy.cpp
 
 HEADERS += \
     card.h \
@@ -25,11 +30,16 @@ HEADERS += \
     deck.h \
     deckexception.h \
     deckmanager.h \
+    fileexception.h \
     fillincard.h \
+    invalidformatexception.h \
     learningsession.h \
+    learningstrategy.h \
+    sequentialstrategy.h \
     singlechoicecard.h \
     terminalcardview.h \
     terminalcontroller.h \
     textcard.h \
-    json.hpp
+    json.hpp \
+    weightedstrategy.h
 

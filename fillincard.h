@@ -8,20 +8,17 @@
 class FillInCard : public Card
 {
 public:
-    FillInCard(const std::string question,const std::vector<std::string> &answers, char delimiter);
+    FillInCard(const std::string question, const std::vector<std::string> &answers, char delimiter);
 
-    bool checkAnswer (const std::string& input) override;
+    bool checkAnswer(const std::string& input) override;
     void render(CardView& view) override;
-
     std::string normalize(std::string input);
     std::vector<std::string> parseInput(const std::string& input, const char delim);
-
-    nlohmann::json createjsonObject()override;
-
-
+    nlohmann::json createjsonObject() override;
+    Card* clone() const override;
 
 private:
-    std::vector<std::string>answers;
+    std::vector<std::string> answers;
     char delimiter;
 };
 

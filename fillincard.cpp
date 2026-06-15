@@ -89,3 +89,10 @@ nlohmann::json FillInCard::createjsonObject()
     return FillInCardjson;
 
 }
+
+Card* FillInCard::clone() const
+{
+    FillInCard* cloned = new FillInCard(question, answers, delimiter);
+    cloned->setScore(this->score);
+    return cloned;
+}

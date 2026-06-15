@@ -10,14 +10,14 @@ class SingleChoiceCard : public Card
 public:
     SingleChoiceCard(const std::string question, const std::vector<std::string> &options, int correctIndex);
 
-    bool checkAnswer (const std::string& input) override;
+    bool checkAnswer(const std::string& input) override;
     void render(CardView& view) override;
     std::string normalize(std::string input);
-
     nlohmann::json createjsonObject() override;
+    Card* clone() const override;
 
 private:
-    std::vector<std::string>options;
+    std::vector<std::string> options;
     int correctIndex;
 };
 

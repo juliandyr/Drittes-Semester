@@ -50,3 +50,9 @@ nlohmann::json SingleChoiceCard::createjsonObject()
 
 }
 
+Card* SingleChoiceCard::clone() const
+{
+    SingleChoiceCard* cloned = new SingleChoiceCard(question, options, correctIndex);
+    cloned->setScore(this->score);
+    return cloned;
+}

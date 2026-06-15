@@ -36,3 +36,10 @@ nlohmann::json TextCard::createjsonObject()
     return TextCardjson;
 
 }
+
+Card* TextCard::clone() const
+{
+    TextCard* cloned = new TextCard(question, options);
+    cloned->setScore(this->score);
+    return cloned;
+}

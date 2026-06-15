@@ -12,34 +12,37 @@ Deck::~Deck()
     for(auto& card: cards){
         delete card;
     }
-    //cards.erase();
 }
 
-Deck::Deck(Deck &&other) : title(std::move(other.title)), cards(std::move(other.cards)) //Kopierkonstruktor-> für jede Karte ein neues Objekt
-//move: keine neuen Objekte werden erstellt
+Deck::Deck(Deck&& other) : title(std::move(other.title)), cards(std::move(other.cards))
 {
     other.cards.clear();
 }
 
+Deck::Deck(const Deck& other) : title(other.title)
+{
+    for(auto card : other.cards){
+        this->cards.push_back(card->clone());
+    }
+}
 
+Deck& Deck::operator=(Deck rhs)
+{
+    swap(*this, rhs);
+    return *this;
+}
 
-// Deck::Deck(Deck &otherDeck)
-// {
-//     this->title = otherDeck.title;
-//     this->cards = otherDeck.getCards();
-// }
-
-void Deck::addCard(Card *card)
+void Deck::addCard(Card* card)
 {
     cards.push_back(card);
 }
 
-std::vector<Card *> Deck::getCards() const
+std::vector<Card*> Deck::getCards() const
 {
     return cards;
 }
 
-Card *Deck::getCard(int index)
+Card* Deck::getCard(int index)
 {
     return cards.at(index);
 }
